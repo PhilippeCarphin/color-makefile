@@ -3,8 +3,8 @@ include ../colors.mk
 
 all:
 	$(call make_echo_run_test,"Showing output of both files")
-	@$(MAKE) cfloat_output
-	@$(MAKE) pyfloat_output
+	@$(MAKE) cfloat_output --no-print-directory
+	@$(MAKE) pyfloat_output --no-print-directory
 
 %.o:%.c
 	$(call make_echo_build_c_object)
