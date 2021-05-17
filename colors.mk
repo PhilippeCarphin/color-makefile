@@ -1,9 +1,15 @@
+
+# Set echo based on $(shell uname)
 UNAME := $(shell uname)
 ifeq ($(UNAME),Linux)
 	ECHO := echo -e
 else
 	ECHO := echo
 endif
+
+# Set shell to BASH: echo requires -e on mac and Linux
+# ECHO := echo -e
+# SHELL := /bin/bash
 
 define make_echo_color_bold
 	@case $(1) in \
