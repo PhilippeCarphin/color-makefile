@@ -3,7 +3,7 @@
 UNAME := $(shell uname)
 
 ifeq ($(UNAME),Linux)
-ifeq ($(CI_PROJECT_DIR, "")
+ifeq ($(CI_PROJECT_DIR), "")
 	ECHO := echo -e
 else
 	ECHO := echo
