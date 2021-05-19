@@ -2,11 +2,11 @@
 # Set echo based on $(shell uname)
 UNAME := $(shell uname)
 
-ifeq ($(UNAME),Linux)
-ifeq ($(CI_PROJECT_DIR), "")
-	ECHO := echo -e
-else
+ifeq ($(UNAME),Darwin)
+ifeq ($(CI_PROJECT_DIR),)
 	ECHO := echo
+else
+	ECHO := echo -e
 endif
 else
 	ECHO := echo
