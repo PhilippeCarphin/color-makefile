@@ -1,10 +1,21 @@
 
 # Set echo based on $(shell uname)
 UNAME := $(shell uname)
+
 ifeq ($(UNAME),Linux)
+ifeq ($(CI_PROJECT_DIR, "")
 	ECHO := echo -e
 else
 	ECHO := echo
+endif
+else
+	ECHO := echo
+endif
+
+ifeq ($(VERBOSE),1)
+	at=
+else
+	at=@
 endif
 
 # Set shell to BASH: echo requires -e on mac and Linux
