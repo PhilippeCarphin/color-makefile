@@ -2,6 +2,8 @@
 # Set echo based on $(shell uname)
 UNAME := $(shell uname)
 
+ECHO = echo
+
 ifeq ($(VERBOSE),1)
 	at=
 else
