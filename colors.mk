@@ -2,16 +2,6 @@
 # Set echo based on $(shell uname)
 UNAME := $(shell uname)
 
-ifeq ($(UNAME),Darwin)
-ifeq ($(CI_PROJECT_DIR),)
-	ECHO := echo
-else
-	ECHO := echo -e
-endif
-else
-	ECHO := echo
-endif
-
 ifeq ($(VERBOSE),1)
 	at=
 else
