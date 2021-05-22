@@ -1,30 +1,33 @@
 include ../colors.mk
-.PHONY: pyfloat_output cfloat_output
 
-all:
-	$(call make_echo_run_test,"Showing output of both files")
-	@$(MAKE) cfloat_output --no-print-directory
-	@$(MAKE) pyfloat_output --no-print-directory
+all: cfloat
 
-%.o:%.c
-	$(call make_echo_build_c_object)
-	@gcc -c -o$@ $<
-
+# Executable targets
 cfloat:cfloat.o
 	$(call make_echo_link_c_executable)
-	@gcc $< -o $@
+	$(at) gcc $< -o $@
 
+# Testing targets
+check: check_output
+# Should not be used to compensate for deficient dependencies but has valid uses:
+ccheck: clean check
+
+check_output:cfloat_output pyfloat_output
+	$(call make_echo_run_test,"Comparing $^")
+	$(at) diff $^
+	$(call big_success)
 cfloat_output: cfloat
 	$(call make_echo_generate_file)
-	@./$< | tee $@
-
+	$(at) ./$< | tee $@
 pyfloat_output: pyfloat.py
 	$(call make_echo_generate_file)
-	@python3 $< | tee $@
+	$(at) python3 $< | tee $@
+.PHONY:cfloat_output pyfloat_output
 
-test:cfloat_output pyfloat_output
-	$(call make_echo_run_test,"Comparing $^")
-	@diff $^
+# Rules
+%.o:%.c
+	$(call make_echo_build_c_object)
+	$(at) gcc -c -o$@ $<
 
 clean:
-	rm -f cfloat *_output *.o
+	$(at) rm -f cfloat *_output *.o
