@@ -13,7 +13,7 @@ check: check_output
 ccheck: clean check
 
 check_output:cfloat_output pyfloat_output
-	$(call make_echo_run_test,"Comparing $^")
+	$(call make_echo_run_test,Comparing $^)
 	$(at) diff $^
 	$(call big_success)
 cfloat_output: cfloat
