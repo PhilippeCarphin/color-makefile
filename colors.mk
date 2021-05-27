@@ -58,6 +58,13 @@ endef
 define make_echo_link_c_executable
 	$(call make_echo_color_bold,green,Linking C executable $@)
 endef
+
+define make_echo_link_static_library
+	$(call make_echo_color_bold,green,"Linking static library $@")
+endef
+define make_echo_link_shared_library
+	$(call make_echo_color_bold,green,"Linking shared library $@")
+endef
 define make_echo_generate_file
 	$(call make_echo_color_bold,blue,Generating $@)
 endef
