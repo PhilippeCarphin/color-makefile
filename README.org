@@ -1,0 +1,27 @@
+#+TITLE: Color Makefile
+
+A small file =colors.mk= can be included in makefiles to output in color with
+#+begin_src makefile
+a_target:
+	$(call make_echo_color,green,"Doing somehting for $@"
+#+end_src
+
+and some general functions
+#+begin_src makefile
+manifest.txt: generate_manifest.sh
+	$(shell make_echo_generate_file)
+      ./generate_manifest.sh -o $@
+%.o:%.c
+	$(shell make_echo_build_c_object)
+      $(CC) -c $(CFLAGS) $< $@
+%.o:%.f
+	$(shell make_echo_build_fortran_object)
+      $(CC) -c $(CFLAGS) $< $@
+myexec: $(objects)
+	$(shell make_echo_linking_fortran_executable)
+	ifort $^ -o $@
+myexec: $(objects)
+	$(shell make_echo_linking_c_executable)
+	ld $^ -o $@
+#+end_src
+
