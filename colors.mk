@@ -49,14 +49,22 @@ endef
 define make_echo_build_c_object
 	$(call make_echo_color,green,Building C object $@)
 endef
+define make_echo_link_c_executable
+	$(call make_echo_color_bold,green,Linking C executable $@)
+endef
+
+define make_echo_build_cxx_object
+	$(call make_echo_color,green,Building CXX object $@)
+endef
+define make_echo_link_cxx_executable
+	$(call make_echo_color_bold,green,Linking CXX executable $@)
+endef
+
 define make_echo_link_fortran_executable
 	$(call make_echo_color_bold,green,Linking Fortran executable $@)
 endef
 define make_echo_build_fortran_object
 	$(call make_echo_color,green,Building Fortran object $@)
-endef
-define make_echo_link_c_executable
-	$(call make_echo_color_bold,green,Linking C executable $@)
 endef
 
 define make_echo_link_static_library
